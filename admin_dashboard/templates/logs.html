@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+<div class="d-flex align-items-center justify-content-center dashboard-wrapper" style="min-height: 50vh;">
+    <div class="w-100 p-4" style="max-width: 95vw">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="mb-0">{% trans 'Access logs' %}</h2>
+            <span class="badge bg-secondary fs-6 px-3 py-2">{{ access_logs.count }} {% trans 'logs' %}</span>
+        </div>
+
+        <div class="bg-body-tertiary rounded-3 overflow-hidden">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>{% trans 'Timestamp' %}</th>
+                        <th>{% trans 'User' %}</th>
+                        <th>UID</th>
+                        <th>{% trans 'Device' %}</th>
+                        <th>{% trans 'Result' %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for log in access_logs %}
+                    <tr>
+                        <td class="text-secondary small font-monospace">
+                            {{ log.timestamp|date:"Y-m-d H:i:s" }}
+                        </td>
+                        <td>
+                            {% if log.user %}
+                                {{ log.user.email }}
+                            {% else %}
+                                <span class="text-secondary">{% trans 'Unknown' %}</span>
+                            {% endif %}
+                        </td>
+                        <td class="font-monospace small text-secondary">
+                            {{ log.uid_hash|truncatechars:16 }}
+                        </td>
+                        <td class="small">{{ log.device }}</td>
+                        <td>
+                            {% if log.result == 'ACCESS_GRANTED' %}
+                                <span class="badge bg-success" style="width: 125px">{% trans 'Access granted' %}</span>
+                            {% elif log.result == 'DENIED_BLOCKED' %}
+                                <span class="badge bg-danger" style="width: 125px">{% trans 'Blocked user' %}</span>
+                            {% elif log.result == 'DENIED_SPOOF' %}
+                                <span class="badge bg-danger" style="width: 125px">{% trans 'Face spoofing' %}</span>
+                            {% elif log.result == 'DENIED_FACE' %}
+                                <span class="badge bg-warning text-dark" style="width: 125px">{% trans 'Face not recognized' %}</span>
+                            {% else %}
+                                <span class="badge bg-warning text-dark" style="width: 125px">{% trans 'Unknown card' %}</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="text-center text-secondary py-4">{% trans 'No logs' %}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+<div class="d-flex align-items-center justify-content-center pt-3" style="min-height: 80vh;">
+  <div class="bg-body-tertiary rounded-3 p-3 w-100" style="max-width: 600px;">
+
+    <div class="d-flex align-items-center gap-3 mb-4">
+      <a href="{% url 'home' %}" class="btn btn-outline-secondary btn-sm">← {% trans 'Back' %}</a>
+      <h2 class="mb-0">{% trans 'Edit user' %}</h2>
+    </div>
+
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <!-- Email -->
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" name="email" id="email"
+          class="form-control {% if errors.email %}is-invalid{% endif %}"
+          value="{{ post.email|default:au.email }}" required>
+        {% if errors.email %}
+          <div class="invalid-feedback">{{ errors.email }}</div>
+        {% endif %}
+      </div>
+
+      <!-- UID  -->
+      <div class="mb-3">
+        <label for="uid" class="form-label">
+        UID <span class="text-secondary fw-normal">(14 hex {% trans 'characters' %})</span>
+        </label>
+        <input type="text" name="uid" id="uid"
+            class="form-control {% if errors.uid %}is-invalid{% endif %}"
+            placeholder="{{ au.uid }}"
+            maxlength="20">
+        {% if errors.uid %}
+            <div class="invalid-feedback">{{ errors.uid }}</div>
+        {% endif %}
+      </div>
+
+      <!-- Photos -->
+      <div class="mb-3">
+        <label class="form-label">
+          {% trans 'Photos' %}
+          <span class="text-secondary fw-normal small">({{ au.photos.count }}/5)</span>
+        </label>
+
+        <div class="d-flex gap-3 flex-wrap mb-3">
+          {% for photo in au.photos.all %}
+          <div class="position-relative" id="photo-wrapper-{{ photo.id }}">
+            <img src="{{ photo.photo.url }}"
+              style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+            <button type="button"
+              class="btn btn-danger btn-sm position-absolute top-0 end-0 delete-photo"
+              style="padding: 2px 6px; border-radius: 0 8px 0 8px;"
+              data-photo-id="{{ photo.id }}"
+              data-user-photo-count="{{ au.photos.count }}">✕</button>
+          </div>
+          {% endfor %}
+        </div>
+
+        {% if au.photos.count < 5 %}
+        <div id="photo-zone"
+          class="border border-2 rounded-3 p-3 text-center position-relative"
+          style="border-style: dashed !important; cursor: pointer;">
+          <input type="file" name="photos" id="photos" accept="image/*" multiple
+            class="position-absolute top-0 start-0 w-100 h-100 opacity-0"
+            style="cursor: pointer;">
+          <div>🖼️</div>
+          <p class="text-secondary mb-0 small">{% trans 'Click or drag photos here' %}</p>
+          <small class="text-secondary">{% trans 'You can add' %} {{ au.photos.count|add:"-5"|stringformat:"d"|slice:"1:" }} {% trans 'photo(s)' %}</small>
+        </div>
+        <div id="preview-grid" class="d-flex gap-2 mt-2 flex-wrap"></div>
+        <div id="photo-count" class="form-text mt-1"></div>
+        {% else %}
+        <p class="text-secondary small">{% trans 'Maximum number of photos reached' %}</p>
+        {% endif %}
+
+        {% if errors.photos %}
+          <div class="text-danger small mt-1">{{ errors.photos }}</div>
+        {% endif %}
+      </div>
+
+      <!-- Blocked -->
+      <div class="mb-4 form-check">
+        <input type="checkbox" name="blocked" id="blocked" class="form-check-input"
+          {% if au.blocked %}checked{% endif %}>
+        <label for="blocked" class="form-check-label">{% trans 'Blocked' %}</label>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100">{% trans 'Save changes' %}</button>
+    </form>
+  </div>
+</div>
+
+{% load static %}
+<script src="{% static 'admin_dashboard/js/edit_user.js' %}"></script>
+<script src="{% static 'admin_dashboard/js/encoding_overlay.js' %}"></script>
+{% endblock %}

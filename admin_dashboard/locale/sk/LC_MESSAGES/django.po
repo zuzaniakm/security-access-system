@@ -1,0 +1,228 @@
+# Django project translations for Slovak language
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Marek Zuzaniak <zuzaniak2@stud.uniza.sk>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-20 18:40+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Marek Zuzaniak <zuzaniak2@stud.uniza.sk>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
+
+#: admin_dashboard/templates/add_user.html:8
+#: admin_dashboard/templates/edit_user.html:8
+msgid "Back"
+msgstr "Späť"
+
+#: admin_dashboard/templates/add_user.html:9
+msgid "Add authorized user"
+msgstr "Pridať autorizovanú osobu"
+
+#: admin_dashboard/templates/add_user.html:29
+msgid "characters"
+msgstr "znakov"
+
+#: admin_dashboard/templates/add_user.html:41
+#: admin_dashboard/templates/edit_user.html:37
+msgid "Photos"
+msgstr "Fotografie"
+
+#: admin_dashboard/templates/add_user.html:49
+#: admin_dashboard/templates/edit_user.html:63
+msgid "Click or drag photos here"
+msgstr "Klikni alebo potiahni fotografie sem"
+
+#: admin_dashboard/templates/add_user.html:63
+#: admin_dashboard/templates/edit_user.html:81
+#: admin_dashboard/templates/home.html:47
+msgid "Blocked"
+msgstr "Zablokovaný"
+
+#: admin_dashboard/templates/add_user.html:66
+msgid "Save user"
+msgstr "Uložiť osobu"
+
+#: admin_dashboard/templates/edit_user.html:9
+msgid "Edit user"
+msgstr "Upraviť osobu"
+
+#: admin_dashboard/templates/edit_user.html:29
+msgid "currently not possible to change"
+msgstr "aktuálne nie je možné meniť"
+
+#: admin_dashboard/templates/edit_user.html:64
+msgid "You can add"
+msgstr "Môžeš pridať ešte"
+
+#: admin_dashboard/templates/edit_user.html:64
+#: admin_dashboard/templates/home.html:51
+msgid "photo(s)"
+msgstr "foto"
+
+#: admin_dashboard/templates/edit_user.html:69
+msgid "Maximum number of photos reached"
+msgstr "Dosiahnutý maximálny počet fotografií"
+
+#: admin_dashboard/templates/edit_user.html:84
+msgid "Save changes"
+msgstr "Uložiť zmeny"
+
+#: admin_dashboard/templates/home.html:15
+msgid "Authorized users"
+msgstr "Autorizované osoby"
+
+#: admin_dashboard/templates/home.html:16
+msgid "Add user"
+msgstr "Pridať osobu"
+
+#: admin_dashboard/templates/home.html:47
+msgid "Active"
+msgstr "Aktívny"
+
+#: admin_dashboard/templates/home.html:68
+msgid "No authorized users."
+msgstr "Žiadne autorizované osoby."
+
+#: admin_dashboard/templates/login.html:9
+msgid "Login"
+msgstr "Prihlásenie"
+
+#: admin_dashboard/templates/login.html:16
+msgid "Username"
+msgstr "Používateľské meno"
+
+#: admin_dashboard/templates/login.html:25
+msgid "Password"
+msgstr "Heslo"
+
+#: admin_dashboard/templates/login.html:29
+#: admin_dashboard/templates/navbar.html:62
+msgid "Log in"
+msgstr "Prihlásiť"
+
+#: admin_dashboard/templates/logs.html:7
+msgid "Access logs"
+msgstr "Záznamy o prístupe"
+
+#: admin_dashboard/templates/logs.html:8
+msgid "logs"
+msgstr "záznamov"
+
+#: admin_dashboard/templates/logs.html:15
+msgid "Timestamp"
+msgstr "Časová pečiatka"
+
+#: admin_dashboard/templates/logs.html:16
+msgid "User"
+msgstr "Osoba"
+
+#: admin_dashboard/templates/logs.html:18
+msgid "Device"
+msgstr "Zariadenie"
+
+#: admin_dashboard/templates/logs.html:19
+msgid "Result"
+msgstr "Výsledok"
+
+#: admin_dashboard/templates/logs.html:32
+msgid "Unknown"
+msgstr "Neznámy"
+
+#: admin_dashboard/templates/logs.html:41
+msgid "Access granted"
+msgstr "Prístup povolený"
+
+#: admin_dashboard/templates/logs.html:43
+msgid "Blocked user"
+msgstr "Zablokovaná osoba"
+
+#: admin_dashboard/templates/logs.html:45
+msgid "Face spoofing"
+msgstr "Falšovanie tváre"
+
+#: admin_dashboard/templates/logs.html:47
+msgid "Face not recognized"
+msgstr "Tvár nerozpoznaná"
+
+#: admin_dashboard/templates/logs.html:49
+msgid "Unknown card"
+msgstr "Neznáma karta"
+
+#: admin_dashboard/templates/logs.html:55
+msgid "No logs"
+msgstr "Žiadne záznamy"
+
+#: admin_dashboard/templates/navbar.html:4
+msgid "Security Access System"
+msgstr "Bezpečnostný Prístupový Systém"
+
+#: admin_dashboard/templates/navbar.html:18
+msgid "Home"
+msgstr "Domov"
+
+#: admin_dashboard/templates/navbar.html:23
+msgid "Logs"
+msgstr "Záznamy"
+
+#: admin_dashboard/templates/navbar.html:28
+msgid "Admin panel"
+msgstr "Admin panel"
+
+#: admin_dashboard/templates/navbar.html:58
+msgid "Log out"
+msgstr "Odhlásiť"
+
+#: admin_dashboard/views.py:35
+#, python-format
+msgid "%(name)s is not a supported file type (allowed: JPG, PNG, WEBP)."
+msgstr "%(name)s nie je podporovaný typ súboru (povolené:  JPG, PNG, WEBP)."
+
+#: admin_dashboard/views.py:47
+msgid "Login successful."
+msgstr "Prihlásenie úspešné."
+
+#: admin_dashboard/views.py:50
+msgid "Incorrect username or password."
+msgstr "Nesprávne používateľské meno alebo heslo."
+
+#: admin_dashboard/views.py:57
+msgid "You have been logged out!"
+msgstr "Boli ste úspešne odhlásený."
+
+#: admin_dashboard/views.py:94
+msgid "Upload at least 1 photo."
+msgstr "Nahrajte aspoň 1 fotografiu"
+
+#: admin_dashboard/views.py:96
+msgid "Upload a maximum of 5 photos."
+msgstr "Nahrajte maximálne 5 fotografií"
+
+#: admin_dashboard/views.py:117
+msgid "User has been successfully added."
+msgstr "Používateľ bol úspešne pridaný."
+
+#: admin_dashboard/views.py:142
+#, python-format
+msgid "You can have a maximum of 5 photos (currently: %(count)s)."
+msgstr "Môžete mať maximálne 5 fotografií (momentálne: %(count)s)."
+
+#: admin_dashboard/views.py:159
+msgid "User has been successfully edited."
+msgstr "Používateľ bol úspešne upravený."
+
+#: admin_dashboard/views.py:174
+msgid "User deleted successfully."
+msgstr "Používateľ bol úspešne odstránený."
+
+#: admin_dashboard/views.py:185
+msgid "At least 1 photo must remain."
+msgstr "Musí zostať aspoň 1 fotografia."

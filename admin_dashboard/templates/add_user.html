@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+<div class="d-flex align-items-center justify-content-center pt-3" style="min-height: 80vh;">
+  <div class="bg-body-tertiary rounded-3 p-4 w-100" style="max-width: 580px;">
+
+    <div class="d-flex align-items-center gap-3 mb-4">
+        <a href="{% url 'home' %}" class="btn btn-outline-secondary btn-sm">← {% trans 'Back' %}</a>
+        <h2 class="mb-0">{% trans 'Add authorized user' %}</h2>
+    </div>
+
+    <form method="post" enctype="multipart/form-data" id="main-form">
+      {% csrf_token %}
+
+      <!-- Email -->
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" name="email" id="email"
+          class="form-control {% if errors.email %}is-invalid{% endif %}"
+          value="{{ post.email|default:'' }}" required>
+        {% if errors.email %}
+          <div class="invalid-feedback">{{ errors.email }}</div>
+        {% endif %}
+      </div>
+
+      <!-- UID -->
+      <div class="mb-3">
+        <label for="uid" class="form-label">
+          UID <span class="text-secondary fw-normal">(14 hex {% trans 'characters' %})</span>
+        </label>
+        <input type="text" name="uid" id="uid"
+          class="form-control {% if errors.uid %}is-invalid{% endif %}"
+          value="{{ post.uid|default:'' }}" required maxlength="20">
+        {% if errors.uid %}
+          <div class="invalid-feedback">{{ errors.uid }}</div>
+        {% endif %}
+      </div>
+
+      <!-- Photos -->
+      <div class="mb-3">
+        <label class="form-label">{% trans 'Photos' %}</label>
+        <div id="photo-zone"
+          class="border border-2 rounded-3 p-4 text-center position-relative"
+          style="border-style: dashed !important; cursor: pointer;">
+          <input type="file" name="photos" id="photos" accept="image/*" multiple
+            class="position-absolute top-0 start-0 w-100 h-100 opacity-0"
+            style="cursor: pointer;">
+          <div style="font-size: 2rem;">🖼️</div>
+          <p class="text-secondary mb-0">{% trans 'Click or drag photos here' %}</p>
+          <small class="text-secondary">Min 1 – Max 5 · JPG, PNG, WEBP</small>
+        </div>
+        <div id="preview-grid" class="d-flex gap-2 mt-2 flex-wrap"></div>
+        <div id="photo-count" class="form-text mt-1"></div>
+        {% if errors.photos %}
+          <div class="text-danger small mt-1">{{ errors.photos }}</div>
+        {% endif %}
+      </div>
+
+      <!-- Blocked -->
+      <div class="mb-4 form-check">
+        <input type="checkbox" name="blocked" id="blocked" class="form-check-input"
+          {% if post.blocked %}checked{% endif %}>
+        <label for="blocked" class="form-check-label">{% trans 'Blocked' %}</label>
+      </div>
+
+      <button type="submit" id="submit-btn" class="btn btn-primary w-100">{% trans 'Save user' %}</button>
+    </form>
+  </div>
+</div>
+
+{% load static %}
+<script src="{% static 'admin_dashboard/js/add_user.js' %}"></script>
+<script src="{% static 'admin_dashboard/js/encoding_overlay.js' %}"></script>
+{% endblock %}

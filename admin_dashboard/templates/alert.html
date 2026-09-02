@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="sk">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Security Alert</title>
+</head>
+<body style="margin:0; padding:0; background-color:#0d0d0f; font-family:Arial,Helvetica,sans-serif; color:#c8c8cc;">
+
+  <!-- Outer wrapper -->
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#0d0d0f;">
+    <tr>
+      <td align="center" style="padding:40px 16px;">
+
+        <!-- Email card -->
+        <table width="580" cellpadding="0" cellspacing="0" border="0" style="max-width:580px; width:100%;">
+
+          <!-- HEADER -->
+          <tr>
+            <td style="background-color:#111114; border:1px solid #2a2a30; border-bottom:none; padding:0;">
+
+              <!-- Red top accent bar -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="height:3px; background-color:#ff3b3b; font-size:0; line-height:0;">&nbsp;</td>
+                </tr>
+              </table>
+
+              <!-- Header content -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding:20px 32px 15px;">
+                <tr>
+                  <td style="padding:28px 32px 20px 32px;">
+                    <table cellpadding="0" cellspacing="0" border="0">
+                      <tr>
+                        <!-- Alert icon -->
+                        <td valign="middle" style="padding-right:14px;">
+                          <table cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                              <td width="44" height="44" align="center" valign="middle"
+                                  style="background-color:rgba(255,59,59,0.12); border:1px solid rgba(255,59,59,0.35); border-radius:8px;">
+                                &#9888;
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                        <!-- Header text -->
+                        <td valign="middle">
+                          <p style="margin:0 0 4px 0; font-family:Courier,monospace; font-size:10px; letter-spacing:0.15em; color:#ff3b3b; text-transform:uppercase;">
+                            Security alert
+                          </p>
+                          <p style="margin:0; font-size:18px; font-weight:bold; color:#f0f0f2;">
+                            {{ title }}
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+
+            </td>
+          </tr>
+
+          <!-- BODY -->
+          <tr>
+            <td style="background-color:#111114; border:1px solid #2a2a30; border-top:1px solid #1e1e22; padding:28px 32px;">
+
+              <!-- Section: Identified person -->
+              <p style="margin:0 0 12px 0; font-family:Courier,monospace; font-size:9px; letter-spacing:0.18em; color:#c8c8cc; text-transform:uppercase;">
+                User associated with the incident
+              </p>
+
+              <!-- Person card -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0"
+                    style="background-color:#0d0d0f; border:1px solid #2a2a30; border-left:3px solid #ff3b3b; border-radius:4px; margin-bottom:24px;">
+                <tr>
+                  <!-- Avatar -->
+                  <td width="64" valign="middle" style="padding:12px 0 12px 18px;">
+                    <table cellpadding="0" cellspacing="0" border="0">
+                      <tr>
+                        {% if photo_url %}
+                        <td width="64" height="64" align="center" valign="middle"
+                            style="border-radius:50%; overflow:hidden; border:1px solid #2a2a30;">
+                          <img src="{{ photo_url|safe }}" width="64" height="64"
+                            style="border-radius:50%; display:block; object-fit:cover;" />
+                        </td>
+                        {% else %}
+                        <td width="64" height="64" align="center" valign="middle"
+                            style="background-color:#1a1a1e; border:1px solid #2a2a30; border-radius:50%; font-family:Courier,monospace; font-size:20px; font-weight:bold; color:#ff3b3b;">
+                          {{ email|slice:":1"|upper }}
+                        </td>
+                        {% endif %}
+                      </tr>
+                    </table>
+                  </td>
+                  <!-- Name + ID -->
+                  <td valign="middle" style="padding:16px 16px;">
+                    <p style="margin:0 0 3px 0; font-size:15px; font-weight:bold; color:#f0f0f2;">{{ email }}</p>
+                    <p style="margin:0; font-family:Courier,monospace; font-size:11px; color:#c8c8cc;">UID: {{ uid|truncatechars:32 }}</p>
+                  </td>
+                  <!-- Blocked badge -->
+                  <td align="right" valign="middle" style="padding:16px 18px 16px 0;">
+                    <span style="background-color:rgba(255,59,59,0.1); border:1px solid rgba(255,59,59,0.3); border-radius:4px; padding:4px 10px; font-family:Courier,monospace; font-size:10px; letter-spacing:0.08em; color:#ff3b3b; white-space:nowrap;">
+                      {{ description }}
+                    </span>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Section: Event details -->
+              <p style="margin:0 0 12px 0; font-family:Courier,monospace; font-size:9px; letter-spacing:0.18em; color:#c8c8cc; text-transform:uppercase;">
+                Incident details
+              </p>
+
+              <!-- Data grid -->
+              <table width="100%" cellpadding="0" cellspacing="1" border="0"
+                    style="background-color:#1e1e22; border:1px solid #1e1e22; border-radius:4px; margin-bottom:24px; border-collapse:separate;">
+                <tr>
+                  <!-- Device -->
+                  <td width="50%" style="background-color:#0d0d0f; padding:14px 16px;">
+                    <p style="margin:0 0 6px 0; font-family:Courier,monospace; font-size:9px; letter-spacing:0.15em; color:#c8c8cc; text-transform:uppercase;">Device</p>
+                    <p style="margin:0; font-family:Courier,monospace; font-size:12px; font-weight:bold; color:#f0f0f2;">{{ device }}</p>
+                  </td>
+                  <!-- Timestamp -->
+                  <td width="50%" style="background-color:#0d0d0f; padding:14px 16px;">
+                    <p style="margin:0 0 6px 0; font-family:Courier,monospace; font-size:9px; letter-spacing:0.15em; color:#c8c8cc; text-transform:uppercase;">Timestamp</p>
+                    <p style="margin:0; font-family:Courier,monospace; font-size:12px; color:#f0f0f2;">{{ date_time|date:"Y-m-d H:i:s" }}</p>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Action buttons -->
+              <table cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="padding-right:10px;">
+                    <a href="{{ dashboard_url }}"
+                       style="display:inline-block; padding:11px 20px; background-color:#ff3b3b; color:#ffffff; font-family:Courier,monospace; font-size:11px; letter-spacing:0.08em; font-weight:bold; text-decoration:none; border-radius:4px;">
+                      OPEN DASHBOARD
+                    </a>
+                  </td>
+                  <td>
+                    <a href="{{ log_url }}"
+                       style="display:inline-block; padding:11px 20px; background-color:transparent; color:#888890; font-family:Courier,monospace; font-size:11px; letter-spacing:0.08em; font-weight:bold; text-decoration:none; border-radius:4px; border:1px solid #2a2a30;">
+                      SHOW LOG
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+            </td>
+          </tr>
+
+          <!-- FOOTER -->
+          <tr>
+            <td style="background-color:#0d0d0f; border:1px solid #2a2a30; border-top:none; padding:16px 32px;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="font-family:Courier,monospace; font-size:10px; color:#c8c8cc;">
+                    Security Access System
+                  </td>
+                  <td align="right" style="font-family:Courier,monospace; font-size:10px; color:#c8c8cc;">
+                    Automatically generated message - please do not reply
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'admin_dashboard/css/dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="d-flex align-items-center justify-content-center dashboard-wrapper">
+  {% if user.is_authenticated %}
+  <div class="w-100 p-4" style="max-width: 95vw">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="mb-0">{% trans 'Authorized users' %}</h2>
+      <a href="{% url 'add_user' %}" class="btn btn-primary">+ {% trans 'Add user' %}</a>
+    </div>
+
+    {% if authorized_users %}
+    <div class="row g-4">
+      {% for au in authorized_users %}
+      <div class="col-12 col-md-6 col-xl-4">
+        <div class="bg-body-tertiary rounded-3 p-4 h-100 d-flex gap-3 card-hoverable position-relative"
+          data-edit-url="{% url 'edit_user' au.id %}">
+
+          {% with au.photos.first as first_photo %}
+          {% if first_photo %}
+            <img src="{{ first_photo.photo.url }}" class="card-clickable user-photo">
+          {% else %}
+            <div class="d-flex align-items-center justify-content-center bg-secondary rounded-3 card-clickable user-photo-placeholder">
+              <span>👤</span>
+            </div>
+          {% endif %}
+          {% endwith %}
+
+          <div class="d-flex flex-column justify-content-center overflow-hidden">
+            <p class="mb-1 fw-semibold fs-5 card-clickable user-email text-truncate">{{ au.email }}</p>
+
+            <p class="mb-3 text-secondary small user-uid">
+              UID: {{ au.uid|truncatechars:16 }}
+            </p>
+
+            <div class="d-flex gap-2 ">
+              <span class="badge fs-6 px-3 py-2 badge-button toggle-blocked {% if au.blocked %}bg-danger{% else %}bg-success{% endif %}"
+                data-user-id="{{ au.id }}"
+                data-blocked="{{ au.blocked|yesno:'true,false' }}">
+                {% if au.blocked %}{% trans 'Blocked' %}{% else %}{% trans 'Active' %}{% endif %}
+              </span>
+
+              <span class="badge bg-secondary fs-6 px-3 py-2 d-none d-md-inline">
+                {{ au.photos.count }} {% trans 'photo(s)' %}
+              </span>
+
+              <form method="post" action="{% url 'delete_user' au.id %}" class="delete-user-form delete-hover">
+                {% csrf_token %}
+                <button type="submit" class="delete-btn">
+                  ✕
+                </button>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+      <p class="text-secondary">{% trans 'No authorized users.' %}</p>
+    {% endif %}
+  </div>
+  {% endif %}
+</div>
+{% if encoding_user_id %}
+<script src="{% static 'admin_dashboard/js/encoding_overlay.js' %}"></script>
+<div id="encoding-trigger" data-user-id="{{ encoding_user_id }}"></div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+      const userId = document.getElementById('encoding-trigger').dataset.userId;
+      showEncodingOverlay(userId);
+  });
+</script>
+{% endif %}
+<script src="{% static 'admin_dashboard/js/dashboard.js' %}"></script>
+{% endblock %}
