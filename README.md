@@ -1,6 +1,6 @@
 # Security Access System
 
-A two-factor physical access control system built on the Raspberry Pi 5, combining **NFC/RFID card identification** with **biometric face recognition** and anti-spoofing protection from [Silent-Face-Anti-Spoofing-onnx](https://github.com/QingHeYang/Silent-Face-Anti-Spoofing-onnx) to secure restricted spaces. Authorized users and access history are managed through a **Django** web admin panel. Developed as a [master's thesis](https://opac.crzp.sk/?fn=docview2ChildY1DK7J&record=70D560FC111767F5326C7EEF9293&seo=CRZP-Prehliadanie-prác) at the University of Žilina, Faculty of Management Science and Informatics.
+A two-factor physical access control system built on the Raspberry Pi 5, combining **NFC/RFID card identification** with **biometric face recognition** and anti-spoofing protection from [Silent-Face-Anti-Spoofing-onnx](https://github.com/QingHeYang/Silent-Face-Anti-Spoofing-onnx) to secure restricted spaces. Authorized users and access history are managed through a **Django** web admin panel. Developed as a [master's thesis](https://opac.crzp.sk/?fn=detailBiblioForm&sid=70D560FC111767F5326C7EEF9293) at the University of Žilina, Faculty of Management Science and Informatics.
 
 ## Overview
 
